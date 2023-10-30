@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.soon.Ex02.Controller.repleController&apos; to &apos;RepleController&apos;&#x0D;&#x0A;- Original project: &apos;Ex02&apos;&#x0D;&#x0A;- Original element: &apos;com.soon.Ex02.Controller.repleController&apos;&#x0D;&#x0A;- Renamed element: &apos;com.soon.Ex02.Controller.RepleController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;repleController&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.soon.Ex02.Controller{repleController.java[repleController" matchStrategy="1" name="RepleController" qualified="false" references="true" similarDeclarations="false" stamp="1697788405598" textual="false" version="1.0"/>
+</session>

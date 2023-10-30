@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${board.boardTitle}"></h1> <!-- th:~ - 타임리프 문법 each : 반복문 / text : 해당 내용을 태그안에 출력 -->
+	<p th:text="${board.boardCon}"></p>
+	
+	<!--댓글 표시하기-->
+	<!-- ${#list.size(리스트)} - 타임리프(Thymleaf)의 함수
+								"리스트의 크기를 반환""
+	 -->
+	<span>댓글 : <h5 th:text="${#lists.size(board.repleList)}"></h5></span>
+	<div>
+	<ul>
+		<li th:each="reple : ${board.repleList}" th:text="${reple.repleCon}"></li>
+	</ul>
+	</div>
+	
+	
+	
+	
+	<!-- th : action = 기존 form태그의 action속성과 같음 -->
+	<form th:action="@{|/reple/create/${board.boardNum}|}" method="post"> <!--링크 쓸때는 @ 사용 -->
+		<textarea name="repleCon" id="repleCon" rows="15"></textarea>
+		<input type="submit" value="댓글등록">
+		
+	</form>
+</body>
+</html>

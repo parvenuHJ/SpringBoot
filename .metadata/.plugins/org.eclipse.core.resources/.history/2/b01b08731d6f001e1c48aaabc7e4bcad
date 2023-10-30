@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${board.boardTitle}"></h1> <!-- th:~ - 타임리프 문법 each : 반복문 / text : 해당 내용을 태그안에 출력 -->
+	<p th:text="${board.boardCon}"></p>
+	<form th:action="@{|/reple/create/${board.boardNum}|}"> <!--링크 쓸때는 @ 사용 -->
+		
+		
+		
+	</form>
+</body>
+</html>

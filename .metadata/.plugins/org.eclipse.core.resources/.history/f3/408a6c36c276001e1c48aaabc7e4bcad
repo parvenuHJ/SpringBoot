@@ -1,0 +1,8 @@
+package com.soon.Ex02_1.Repository;
+
+
+public interface BoardRepository {
+	
+	
+
+}
