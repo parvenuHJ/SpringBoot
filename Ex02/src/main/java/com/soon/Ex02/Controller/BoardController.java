@@ -35,7 +35,7 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping("/board")
+	@GetMapping("/")
 	public String boardHome(Model model) {
 		// findAll - 테이블의 모든 데이터를 조회
 		List<Board> boardList = this.boardService.selectList();

@@ -1,0 +1,27 @@
+package com.soon.bootStart01.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.soon.bootStart01.service.RepleService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class RepleController {
+
+	private final RepleService repleService;
+	
+	// 댓글 달기
+	@PostMapping("/reple/create/{boardNum}")
+	public String repleCreate(@PathVariable("boardNum")Integer boardNum, @RequestParam String repleCon) {
+		
+		return "redirect:/board/detail"+boardNum;
+	}
+	
+	
+	
+}

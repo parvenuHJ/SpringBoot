@@ -1,0 +1,37 @@
+package com.soon.bootStart01;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.soon.bootStart01.entity.Board;
+import com.soon.bootStart01.repository.BoardRepository;
+
+@SpringBootTest
+class BootStart01ApplicationTests {
+
+	@Autowired
+	private BoardRepository boardRepository;
+	
+	// 테스트 코드를 실행할 때는 로컬서버를 중지하고 실행해야 한다
+	// 테스트 코드를 실행할 때는 주입받는 파일이 같은 패키지 위치에 있어야 한다.
+	
+	@Test
+	void contextLoads() {
+		Board b1 = new Board();
+		b1.setBoardTitle("스프링부트가 뭐냐?");
+		b1.setBoardCon("그게 뭔데 어떻게 하는건데");
+		b1.setBoardDate(LocalDateTime.now());
+		this.boardRepository.save(b1);
+		
+		Board b2 = new Board();
+		b2.setBoardTitle("김군순 왤케 얼빵해 보임");
+		b2.setBoardCon("ㅋㅋㅋ");
+		b2.setBoardDate(LocalDateTime.now());
+		this.boardRepository.save(b2);
+		
+	}
+
+}

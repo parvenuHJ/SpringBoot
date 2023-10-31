@@ -14,6 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
+// 기본값으로 카멜케이스이름 -> 언더스코어이름 으로 매칭함 (ex) SalesManager.java -> sales_manager table)
 public class Board {
 
 	@Id // 프라이머리 키임을 지정 // import-springframework (x) , jakarta (o)
@@ -34,6 +35,9 @@ public class Board {
 	private Integer boardNum;
 
 	@Column(length = 100) // 게시글 제목 길이 제한두기 , 문자열 100자까지 제한
+						  // 테이블의 칼럼을 나타내며, 굳이 선언하지 않더라도 해당 클래스의 필드는 모두 컬림이 됨
+						  // 사용하는 이유 : 기본값 외에 추가로 변경이 필요한 옵션이 있으면 사용
+						  // 문자열의 경우 varchar(255)가 기본값
 	private String boardTitle;
 
 	private String boardCon;

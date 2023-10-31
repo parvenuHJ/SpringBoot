@@ -1,0 +1,20 @@
+package com.soon.bootStart01.service;
+
+import org.springframework.stereotype.Service;
+
+import com.soon.bootStart01.repository.RepleRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class RepleService {
+
+	private final RepleRepository repleRepository;
+	
+	public void repleCreate() {
+		
+	}
+	
+	
+}
