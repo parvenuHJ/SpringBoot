@@ -1,0 +1,20 @@
+package com.soon.bootStart01.form;
+
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
+public class BoardForm {
+
+	// @NotEmpty - null 또는 ""(빈문자열) 을 허용하지 않음
+	@NotEmpty(message = "제목을 입력해주세요!") // jakarta.validation.constraints.NotEmpty 로 import
+	@Size(max = 100) // Board 엔터티의 @Column(length = 100) 는 100자가 넘으면 에러가 남 -> 에러 안나게 -> @Size(max = 100) 로
+	private String boardTitle;
+	
+	
+	
+	
+	
+}

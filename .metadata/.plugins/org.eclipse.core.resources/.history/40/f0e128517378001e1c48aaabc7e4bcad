@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/board/create}" method="post">
+		제목<input type="text" name="boardTitle" id="boardTitle">
+		내용<textarea name="boardCon" id="boardCon"></textarea>
+		<input type="submit" value="게시글 등록">
+	</form>
+
+</body>
+</html>

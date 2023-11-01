@@ -1,0 +1,17 @@
+package com.soon.bootStart01.form;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+@Data
+public class BoardForm {
+
+	// @NotEmpty - null 또는 ""(빈문자열) 을 허용하지 않음
+	@NotEmpty(message = "제목을 입력해주세요!") // jakarta.validation.constraints.NotEmpty 로 import
+	private String boardTitle;
+	
+	
+	
+	
+	
+}
