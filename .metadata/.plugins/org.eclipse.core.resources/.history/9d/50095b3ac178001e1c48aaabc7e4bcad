@@ -1,0 +1,73 @@
+package com.soon.bootStart01.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.soon.bootStart01.entity.Board;
+import com.soon.bootStart01.form.BoardForm;
+import com.soon.bootStart01.form.RepleForm;
+import com.soon.bootStart01.repository.BoardRepository;
+import com.soon.bootStart01.service.BoardService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@RequestMapping("/board")
+@RequiredArgsConstructor // final이 붙은 속성을 포함하는 생성자를 자동으로 생성해 줌 - 의존성 주입의 한 방법
+@Controller
+public class BoardController {
+	
+//	private final BoardRepository boardRepository;
+	private final BoardService boardService;
+	
+	// 게시글 리스트 조회
+	@GetMapping("/main")
+	// localhost:9090/board/main?page=3 이런식으로 받아올 것임 // 여기서 3을 받아오려면 아래처럼 받아와야함 ,defaultValue는 따로 페이지번호를 입력안해도 기본값으로 0으로 들어가게 하려고
+	public String goBoardMain(Model model, @RequestParam(value = "page", defaultValue = "0")int page) {
+		Page<Board> boardList = this.boardService.selectList(page);
+		model.addAttribute("boardList",boardList);
+		return "board_main";
+	}
+	
+	// 게시글 상세 조회
+	@GetMapping("/detail/{boardNum}")
+	public String boardDetail(Model model, @PathVariable("boardNum") Integer boardNum, RepleForm repleForm) {
+		Board board = this.boardService.boardDetail(boardNum);			// 매개변수로 RepleForm을 적어주는 이유 :
+		model.addAttribute("board",board);								// 지금 여기 컨트롤러에서 board_detail(뷰)로 보내고있는데 
+		return "board_detail";									// board_detail 에서 ${repleForm}으로 사용되고있음으로 repleForm을 제공해줘야함
+	}
+
+	// 아래 boardCreate의 두 메소드는 이름은 같지만, 다른 이유
+	// - 맵핑 방식이 서로 다르고, 매개변수가 다름
+	// 게시글 작성 폼으로 이동
+	@GetMapping("/create")
+	public String boardCreate(BoardForm boardform) {
+		return "board_form";
+	}
+	
+							// @Valid - 지정한 Form에서 설정한 유효성 검사를 진행함(notEmpty, size .. 등)
+	@PostMapping("/create")	// BindingResult - Form(클래스)에서 설정한 항목과 같은 폼(태그)이 전송되면 자동으로 같은 속성이 바인딩 됨		
+	public String boardCreate(@Valid BoardForm boardform, BindingResult bindingResult) { 	
+		if(bindingResult.hasErrors()) {  // 1. 에러가 있으면 -> 다시 board_form 으로 가서 작성해라
+			return "board_form";    
+		}
+		
+		this.boardService.boardCreate(boardform.getBoardTitle(), boardform.getBoardCon());	// 2. 에러가 없으면 실제 객체를 갖고온다.		  
+		return "redirect:/board/main";
+	}
+	
+	
+	
+	
+
+}
